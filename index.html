@@ -141,17 +141,17 @@
 
       .gif-container {
         max-width: 500px;
-        max-height: 50vh;
         width: 80%;
         margin: 20px auto;
-        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
-      .gif-container img {
-        max-height: 50vh;
+      .gif-container img,
+      .gif-container .tenor-gif-embed {
         width: 100%;
         height: auto;
-        object-fit: contain;
       }
 
       @keyframes fadeIn {
@@ -186,11 +186,6 @@
         .gif-container {
           width: 90%;
           max-width: 350px;
-          max-height: 40vh;
-        }
-
-        .gif-container img {
-          max-height: 40vh;
         }
       }
     </style>
@@ -213,10 +208,18 @@
       <div class="success-message" id="success-message">
         <div class="heart-icon">💕</div>
         <div class="gif-container">
-          <img
-            src="https://64.media.tumblr.com/6ebae29261678f3344bca651e99d8e16/tumblr_inline_o5qw6iVDQS1syo8f2_500.gifv"
-            alt="Shy GIF"
-          />
+          <div
+            class="tenor-gif-embed"
+            data-postid="6352184415979708637"
+            data-share-method="host"
+            data-aspect-ratio="0.782609"
+            data-width="100%"
+          >
+            <a
+              href="https://tenor.com/view/shy-vivek-actor-comedian-anniya-movie-gif-6352184415979708637"
+              >Shy.Gif GIF</a
+            >from <a href="https://tenor.com/search/shy-gifs">Shy GIFs</a>
+          </div>
         </div>
         <h2>Yay! I knew you'd say yes! ❤️</h2>
         <p>Happy Valentine's Day! 💝</p>
@@ -231,7 +234,7 @@
       canvas.height = window.innerHeight;
 
       const particles = [];
-      const particleCount = 11111;
+      const particleCount = 9999;
       let mouseX = canvas.width / 2;
       let mouseY = canvas.height / 2;
 
@@ -266,8 +269,10 @@
 
           // Add constant slow drift
           const minSpeed = 0.3;
-          if (Math.abs(this.speedX) < minSpeed) this.speedX += (Math.random() - 0.5) * 0.1;
-          if (Math.abs(this.speedY) < minSpeed) this.speedY += (Math.random() - 0.5) * 0.1;
+          if (Math.abs(this.speedX) < minSpeed)
+            this.speedX += (Math.random() - 0.5) * 0.1;
+          if (Math.abs(this.speedY) < minSpeed)
+            this.speedY += (Math.random() - 0.5) * 0.1;
 
           if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
           if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
