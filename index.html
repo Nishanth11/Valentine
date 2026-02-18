@@ -234,7 +234,18 @@
       canvas.height = window.innerHeight;
 
       const particles = [];
-      const particleCount = 9999;
+
+      function getParticleCount() {
+        // Estimate physical DPI: use devicePixelRatio as a proxy
+        // 96 CSS px = 1 inch on baseline screens; 1 inch = 2.54 cm
+        const cssPixelsPerCm = 96 / 2.54 / (window.devicePixelRatio || 1);
+        const widthCm = window.innerWidth / cssPixelsPerCm;
+        const heightCm = window.innerHeight / cssPixelsPerCm;
+        const areaCm2 = widthCm * heightCm;
+        return Math.round(areaCm2 * 3);
+      }
+
+      let particleCount = getParticleCount();
       let mouseX = canvas.width / 2;
       let mouseY = canvas.height / 2;
 
@@ -320,6 +331,13 @@
       window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        const newCount = getParticleCount();
+        if (newCount !== particleCount) {
+          particleCount = newCount;
+          particles.length = 0;
+          for (let i = 0; i < particleCount; i++)
+            particles.push(new Particle());
+        }
       });
 
       // Button interactions
